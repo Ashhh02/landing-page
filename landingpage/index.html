@@ -1,0 +1,193 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apple Watch SE</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="hero" role="banner">
+      <div class="hero-content">
+        <h1>Welcome to Apple Watch SE Services</h1>
+        <h2>Powerful features. Affordable price. It’s time to upgrade your wrist.</h2>
+        <button class="cta-button" id="openModalBtn">Subscribe Now</button>
+        <div class="hero-dots" aria-hidden="true">
+          <div class="dot active" data-index="0"></div>
+          <div class="dot" data-index="1"></div>
+          <div class="dot" data-index="2"></div>
+        </div>      
+      </div>
+    </header>
+
+    <main>
+      <section class="features" id="about" aria-labelledby="features-heading">
+        <h2 id="features-heading">Key Features</h2>
+        <div class="feature">
+          <img src="Fitness.png" alt="Icon representing fitness tracking" />
+          <h3>Fitness Tracking</h3>
+          <p>Track your workouts, steps, and activity with precision and style.</p>
+        </div>
+        <div class="feature">
+          <img src="health.png" alt="Icon representing health monitoring" />
+          <h3>Health Monitoring</h3>
+          <p>Stay informed with heart rate monitoring, emergency SOS, and more.</p>
+        </div>
+        <div class="feature">
+          <img src="seamless.png" alt="Icon representing iPhone integration" />
+          <h3>Seamless Integration</h3>
+          <p>Connect effortlessly with your iPhone and apps for a unified experience.</p>
+        </div>
+      </section>
+
+      <section class="gallery" aria-label="Apple Watch Gallery">
+        <img src="applewatchSE.png" alt="Front view of Apple Watch SE" />
+        <img src="applewatchseries9.png" alt="Side view of Apple Watch Series 9" />
+        <img src="applewatchultra.png" alt="Back view of Apple Watch Ultra" />
+      </section>
+
+      <section class="cta">
+        <h2>Get Yours Today</h2>
+        <p>Experience the power of Apple Watch SE. Order now and elevate your lifestyle.</p>
+        <a href="#" class="buy-button">Buy Now</a>
+      </section>
+
+      <section class="testimonials" aria-labelledby="testimonials-heading">
+        <h2 id="testimonials-heading">What Our Customers Are Saying</h2>
+        <div class="testimonial">
+          <img src="https://i.pravatar.cc/100?img=3" alt="Emily R." class="testimonial-image" />
+          <p>"This product exceeded my expectations! It’s user-friendly, reliable, and has made my daily tasks so much easier. Highly recommended." – Emily R., Marketing Manager</p>
+        </div>
+        <div class="testimonial">
+          <img src="https://i.pravatar.cc/100?img=1" alt="James T." class="testimonial-image" />
+          <p>"I’ve tried many solutions, but this one stands out. The customer support is fantastic, and the features are exactly what I needed." – James T., Small Business Owner</p>
+        </div>
+        <div class="testimonial">
+          <img src="https://i.pravatar.cc/100?img=5" alt="Sofia L." class="testimonial-image" />
+          <p>"A game-changer for our team. We’ve seen a 40% improvement in productivity since using this product!" – Sofia L., Project Lead</p>
+        </div>
+      </section>          
+      
+    </main>
+
+    <footer>
+      <div class="footer-container">
+          <nav class="footer-nav">
+              <ul>
+                  <li><a href="#hero">Home</a></li>
+                  <li><a href="#about">About</a></li>
+                  <li><a href="#features">Features</a></li>
+                  <li><a href="#contact">Contact</a></li>
+              </ul>
+          </nav>
+
+          <div class="footer-legal">
+              <p><a href="#privacy-policy">Privacy Policy</a></p>
+              <p><a href="#terms-of-use">Terms of Use</a></p>
+          </div>
+  
+          <div class="footer-contact">
+              <p>Contact us: <a href="ashandrewcabillon@gmail.com">ashandrewcabillon@gmail.com</a></p>
+              <p>© 2025 Your Company. All rights reserved.</p>
+          </div>
+      </div>
+  </footer>
+  
+
+    <div id="signupModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="form-title">
+      <div class="modal-content" role="document">
+        <button class="close-button" aria-label="Close modal" id="closeModalBtn">&times;</button>
+        <h2 id="form-title">Stay Updated</h2>
+        <form id="contactForm" method="POST" action="submit.php">
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message"></textarea>
+
+          <button class="btn" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="thankYouModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="thank-you-title">
+      <div class="modal-content" role="document">
+        <button class="close-button" aria-label="Close" onclick="closeThankYouModal()">&times;</button>
+        <h2 id="thank-you-title">Thank you!</h2>
+        <p>Your subscription has been received.</p>
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById('signupModal');
+      const thankYouModal = document.getElementById('thankYouModal');
+      const openBtn = document.getElementById('openModalBtn');
+      const closeBtn = document.getElementById('closeModalBtn');
+      let lastFocusedElement;
+    
+      openBtn.onclick = () => {
+        lastFocusedElement = document.activeElement;
+        modal.style.display = 'block';
+        document.getElementById('name').focus();
+      };
+    
+      closeBtn.onclick = () => closeModal();
+      window.onclick = (e) => {
+        if (e.target === modal) closeModal();
+      };
+    
+      function closeModal() {
+        modal.style.display = 'none';
+        if (lastFocusedElement) lastFocusedElement.focus();
+      }
+    
+      function closeThankYouModal() {
+        thankYouModal.style.display = 'none';
+      }
+    
+      document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const response = await fetch('submit.php', {
+          method: 'POST',
+          body: formData
+        });
+    
+        if (response.ok) {
+          modal.style.display = 'none';
+          thankYouModal.style.display = 'block';
+        } else {
+          alert('There was a problem. Please try again.');
+        }
+      });
+    
+      const hero = document.querySelector('.hero');
+      const dots = document.querySelectorAll('.dot');
+    
+      const images = [
+        'url("applewatch3.jpg")',
+        'url("apple.png")',
+        'url("applewatch1.jpg")'
+      ];
+    
+      function setBackground(index) {
+        hero.style.backgroundImage = images[index];
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+      }
+    
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.getAttribute('data-index'));
+          setBackground(index);
+        });
+      });
+
+      setBackground(0);
+    </script>
+    
+  </body>
+  </html>
